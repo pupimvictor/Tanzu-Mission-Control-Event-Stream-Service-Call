@@ -3,6 +3,7 @@ kind: ConfigMap
 metadata:
   name: tmc-event-streamer
 data:
+  tmc_url: https://vplpsamer.tmc.cloud.vmware.com
   event_stream_service_call.py: |
     #!/usr/bin/env python3
 

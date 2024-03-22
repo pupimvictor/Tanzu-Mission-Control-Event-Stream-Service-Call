@@ -42,7 +42,6 @@ spec:
         - name: streamer-script
           configMap:
             name: tmc-event-streamer
-            path: event_stream_service_call.py
 
       
         
