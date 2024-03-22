@@ -1,0 +1,13 @@
+[INPUT]
+    Name              tail
+    Tag               kube.*
+    Path              /var/log/containers/tmc-event-streamer-*.log
+    Parser            docker
+    DB                /var/log/flb_kube.db
+
+[OUTPUT]
+    Name        splunk
+    Match       *
+    Host        127.0.0.1
+    Splunk_Token xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
+    Splunk_Send_Raw On
