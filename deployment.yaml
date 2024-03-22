@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tmc-event-streamer
+spec:
+  selector:
+    matchLabels:
+      app: tmc-event-streamer
+  template:
+    metadata:
+      labels:
+        app: tmc-event-streamer
+    spec:
+      containers: 
+      - name: tmc-event-streamer
+        image: python:3.11
+        command:
+          - /var/lib/event_stream_service_call.py
+          - --tmc_url
+          - $(tmc_url)
+          - csp_token
+          - $(csp_token)
+        env:
+        - name: csp_token
+          valueFrom:
+            secretKeyRef:
+              name:  tmc-event-streamer
+              key:  csp-token    
+        - name: tmc_url
+          valueFrom:
+            configMapKeyRef:
+              key: tmc_url
+              name: tmc-event-streamer
+        volumeMounts:
+          - name:  streamer-script
+            mountPath:  /var/lib
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      volumes:
+        - name: streamer-script
+          configMap:
+            name: tmc-event-streamer
+            path: event_stream_service_call.py
+
+      
+        
