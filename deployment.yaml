@@ -25,7 +25,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name:  tmc-event-streamer
-              key:  csp-token    
+              key:  csp_token    
         - name: tmc_url
           valueFrom:
             configMapKeyRef:
