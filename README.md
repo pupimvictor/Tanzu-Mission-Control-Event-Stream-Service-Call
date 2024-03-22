@@ -47,3 +47,15 @@ python3 event_stream_service_call.py --csp_token=<VALUE_FROM_API_TOKENS_PAGE> --
 3. Trigger some events to your clusters via Tanzu Mission Control, and you'll find the events being streamed into your terminal as they happen!
 
 4. In order to stop streaming the events and terminate the script, press control+c or control+z.
+
+## Deploying with Kubernetes
+
+1. Modify the kustomization.yaml file, adding your TMC url
+
+2. Modify the secret.yaml file, addmin your CSP token
+
+3. Run the command:
+
+```sh
+kubectl kustomize . | kubectl apply -f-
+```
